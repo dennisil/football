@@ -9,34 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 let gLeagues = [];
-let germanLeague, englishLeague, spanishLeague, frenchLeague, italianLeague;
-function getData(query = "German%20Bundesliga") {
-    return __awaiter(this, void 0, void 0, function* () {
-        const { teams } = yield fetch(`https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${query}`).then((res) => res.json());
-        return teams;
-    });
-}
 function onInit() {
     return __awaiter(this, void 0, void 0, function* () {
         yield setTeams();
         renderTeams();
     });
 }
+function getTeams(league) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const { teams } = yield fetch(`https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${league}`).then((res) => res.json());
+        return teams;
+    });
+}
 function setTeams() {
     return __awaiter(this, void 0, void 0, function* () {
-        germanLeague = yield getData("German%20Bundesliga");
-        frenchLeague = yield getData("French%20Ligue%201");
-        italianLeague = yield getData("Italian%20Serie%20A");
-        englishLeague = yield getData("English%20Premier%20League");
-        spanishLeague = yield getData("Spanish%20La%20Liga");
+        let germanLeague = yield getTeams("German%20Bundesliga");
+        let frenchLeague = yield getTeams("French%20Ligue%201");
+        let italianLeague = yield getTeams("Italian%20Serie%20A");
+        let englishLeague = yield getTeams("English%20Premier%20League");
+        let spanishLeague = yield getTeams("Spanish%20La%20Liga");
         gLeagues.push(englishLeague, germanLeague, italianLeague, spanishLeague, frenchLeague);
     });
 }
-function createTab(league, ev) {
-    console.log(league);
-}
 window.addEventListener("load", function () {
-    // store tabs variable
     var myTabs = document.querySelectorAll("ul.nav-tabs > li");
     function myTabClicks(tabClickEvent) {
         for (var i = 0; i < myTabs.length; i++) {
@@ -59,11 +54,10 @@ window.addEventListener("load", function () {
     }
 });
 function renderTeams() {
-    for (let i = 1; i < 6; i++) {
+    for (let i = 0; i < 5; i++) {
         let tab = document.querySelector(`#tab-${i}`);
-        console.log(gLeagues[i - 1]);
         let strHTMl = "";
-        gLeagues[i - 1].forEach((team) => {
+        gLeagues[i].forEach((team) => {
             strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>

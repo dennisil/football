@@ -1,28 +1,23 @@
 let gLeagues: [][] = [];
-let germanLeague: [],
-  englishLeague: [],
-  spanishLeague: [],
-  frenchLeague: [],
-  italianLeague: [];
-
-async function getData(query: string = "German%20Bundesliga") {
-  const { teams } = await fetch(
-    `https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${query}`
-  ).then((res) => res.json());
-  return teams;
-}
 
 async function onInit() {
   await setTeams();
   renderTeams();
 }
 
+async function getTeams(league: string): Promise<[]> {
+  const { teams } = await fetch(
+    `https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${league}`
+  ).then((res) => res.json());
+  return teams;
+}
+
 async function setTeams() {
-  germanLeague = await getData("German%20Bundesliga");
-  frenchLeague = await getData("French%20Ligue%201");
-  italianLeague = await getData("Italian%20Serie%20A");
-  englishLeague = await getData("English%20Premier%20League");
-  spanishLeague = await getData("Spanish%20La%20Liga");
+  let germanLeague = await getTeams("German%20Bundesliga");
+  let frenchLeague = await getTeams("French%20Ligue%201");
+  let italianLeague = await getTeams("Italian%20Serie%20A");
+  let englishLeague = await getTeams("English%20Premier%20League");
+  let spanishLeague = await getTeams("Spanish%20La%20Liga");
   gLeagues.push(
     englishLeague,
     germanLeague,
@@ -32,11 +27,8 @@ async function setTeams() {
   );
 }
 
-function createTab(league: [], ev: Event) {
-  console.log(league);
-}
 window.addEventListener("load", function () {
-  // store tabs variable
+ 
   var myTabs = document.querySelectorAll("ul.nav-tabs > li");
 
   function myTabClicks(tabClickEvent: any) {
@@ -69,11 +61,10 @@ window.addEventListener("load", function () {
 });
 
 function renderTeams() {
-  for (let i = 1; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     let tab = document.querySelector(`#tab-${i}`);
-    console.log(gLeagues[i - 1]);
     let strHTMl = "";
-    gLeagues[i - 1].forEach((team) => {
+    gLeagues[i ].forEach((team) => {
       strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>
