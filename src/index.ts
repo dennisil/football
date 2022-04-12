@@ -1,4 +1,4 @@
-let gLeagues : [][] = [] ;
+let gLeagues: [][] = [];
 let germanLeague: [],
   englishLeague: [],
   spanishLeague: [],
@@ -13,7 +13,7 @@ async function getData(query: string = "German%20Bundesliga") {
 }
 
 async function onInit() {
-  await setTeams()
+  await setTeams();
   renderTeams();
 }
 
@@ -29,11 +29,7 @@ async function setTeams() {
     italianLeague,
     spanishLeague,
     frenchLeague
-    
-    
   );
-  
-  
 }
 
 function createTab(league: [], ev: Event) {
@@ -75,18 +71,16 @@ window.addEventListener("load", function () {
 function renderTeams() {
   for (let i = 1; i < 6; i++) {
     let tab = document.querySelector(`#tab-${i}`);
-    console.log(gLeagues[i-1]);
-    let strHTMl = ''
-    gLeagues[i-1].forEach(team => {
-        strHTMl += `
+    console.log(gLeagues[i - 1]);
+    let strHTMl = "";
+    gLeagues[i - 1].forEach((team) => {
+      strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>
         <img src=${team.strTeamBadge} />
         </div>
-        `
-
-    })
-    tab!.innerHTML = strHTMl 
-    
+        `;
+    });
+    tab!.innerHTML = strHTMl;
   }
 }

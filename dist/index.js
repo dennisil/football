@@ -62,8 +62,8 @@ function renderTeams() {
     for (let i = 1; i < 6; i++) {
         let tab = document.querySelector(`#tab-${i}`);
         console.log(gLeagues[i - 1]);
-        let strHTMl = '';
-        gLeagues[i - 1].forEach(team => {
+        let strHTMl = "";
+        gLeagues[i - 1].forEach((team) => {
             strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>

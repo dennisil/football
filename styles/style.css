@@ -1,6 +1,19 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .title {
-  font-size: 3rem;
+  font-size: 48px;
+  line-height: 0.375;
+  letter-spacing: 0.025em;
   text-align: center;
+  font-weight: bold;
 }
 
 .container--tabs {
@@ -8,7 +21,19 @@
 }
 
 .container--tabs .nav-tabs {
-  float: left;
+  font-size: 26px;
+  line-height: 0.03846;
+  letter-spacing: 0.03846em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   margin: 0;
   list-style-type: none;
@@ -22,6 +47,7 @@
 
 .container--tabs .nav-tabs > li > a {
   font-size: 1.5rem;
+  color: #323131;
   text-decoration: none;
   float: left;
   margin-right: 2px;
@@ -38,7 +64,7 @@
 .container--tabs .nav-tabs > li.active > a,
 .container--tabs .nav-tabs > li.active > a:hover,
 .container--tabs .nav-tabs > li.active > a:focus {
-  color: #555;
+  color: #d90c0c;
   cursor: default;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -58,19 +84,36 @@
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container--tabs .tab-content > .tab-pane .team-card img {
-  width: 200px;
+  width: 150px;
 }
 
 .container--tabs .tab-content > .tab-pane .team-card h1 {
+  font-size: 28px;
+  line-height: 0.07143;
+  letter-spacing: 0.05357em;
   text-align: center;
 }
 
 .container--tabs .tab-content > .tab-pane.active {
   display: -ms-grid;
   display: grid;
+  place-items: center;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   gap: 10px;
