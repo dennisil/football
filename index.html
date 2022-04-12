@@ -5,13 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football leagues</title>
+    <link rel="stylesheet" href="styles/style.css">
+    
 </head>
-<body>
-    <main class="main">Football</main>    
+<body onload="onInit()">
+    <main class="main">
+        <h1 class="title">Football Leagues</h1>
+        <div class="container--tabs">
+            <section class="row">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab-1">England</a></li>
+                    <li class=""><a href="#tab-2">German</a></li>
+                    <li class=""><a href="#tab-3">Italian</a></li>
+                    <li class=""><a href="#tab-4">Spanish</a></li>
+                    <li class=""><a href="#tab-5">French</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active"> 
+                    </div> 
+                    <div id="tab-2" class="tab-pane">
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                    </div>
+                    <div id="tab-5" class="tab-pane">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>    
 
 
 
-
+    <script>var exports = {};</script>
     <script src="dist/index.js"></script>
 </body>
 </html>

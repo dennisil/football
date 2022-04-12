@@ -1,0 +1,81 @@
+.title {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.container--tabs {
+	margin: 2rem;
+
+	.nav-tabs {
+		float: left;
+		width: 100%;
+		margin: 0;
+		list-style-type: none;
+		border-bottom: 1px solid #ddd;
+
+		> li {
+			float: left;
+			margin-bottom: -1px;
+
+			> a {
+                font-size: 1.5rem;
+                text-decoration: none;
+				float: left;
+				margin-right: 2px;
+				line-height: 1.42857143;
+				padding: 10px;
+				border: 1px solid transparent;
+				border-radius: 4px 4px 0 0;
+
+				&:hover {
+					border-color: #eee #eee #ddd;
+				}
+			}
+
+			&.active {
+				> a,
+				> a:hover,
+				> a:focus {
+					color: #555;
+					cursor: default;
+					background-color: #fff;
+					border: 1px solid #ddd;
+					border-bottom-color: transparent;
+				}
+			}
+		}
+	}
+
+	.tab-content {
+		float: left;
+		width: 100%;
+        
+
+		> .tab-pane {
+			display: none;
+
+            .team-card {
+                width: fit-content;
+                img {
+                    width: 200px;
+                }
+                h1 {
+                    text-align: center;
+                }
+            }
+
+			&.active {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+				padding: 2.5% 3.5%;
+				background-color: #efefef;
+			}
+		}
+
+		> .active {
+			display: block;
+		}
+	}
+
+}
