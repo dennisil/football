@@ -1,3 +1,10 @@
+
+interface Team {
+    strTeam: string
+    strTeamBadge: string
+    strWebsite: string
+}
+
 let gLeagues: [][] = [];
 
 async function onInit() {
@@ -5,19 +12,24 @@ async function onInit() {
   renderTeams();
 }
 
-async function getTeams(league: string): Promise<[]> {
-  const { teams } = await fetch(
-    `https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${league}`
-  ).then((res) => res.json());
-  return teams;
+async function getTeams(league: string = 'English Premier League'): Promise<[]>  {
+  try {
+    const { teams } = await fetch(
+      `https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${league}`
+    ).then((res) => res.json());
+    return teams;
+    
+  } catch (err) {
+    throw(err)
+  }
 }
 
 async function setTeams() {
-  let germanLeague = await getTeams("German%20Bundesliga");
-  let frenchLeague = await getTeams("French%20Ligue%201");
-  let italianLeague = await getTeams("Italian%20Serie%20A");
-  let englishLeague = await getTeams("English%20Premier%20League");
-  let spanishLeague = await getTeams("Spanish%20La%20Liga");
+  let germanLeague = await getTeams("German Bundesliga");
+  let frenchLeague = await getTeams("French Ligue 1");
+  let italianLeague = await getTeams("Italian Serie A");
+  let englishLeague = await getTeams("English Premier League");
+  let spanishLeague = await getTeams("Spanish La Liga");
   gLeagues.push(
     englishLeague,
     germanLeague,
@@ -28,29 +40,28 @@ async function setTeams() {
 }
 
 window.addEventListener("load", function () {
- 
-  var myTabs = document.querySelectorAll("ul.nav-tabs > li");
+  let myTabs = document.querySelectorAll("ul.nav-tabs > li");
 
   function myTabClicks(tabClickEvent: any) {
-    for (var i = 0; i < myTabs.length; i++) {
+    for (let i = 0; i < myTabs.length; i++) {
       myTabs[i].classList.remove("active");
     }
 
-    var clickedTab = tabClickEvent.currentTarget;
+    let clickedTab = tabClickEvent.currentTarget;
 
     clickedTab.classList.add("active");
 
     tabClickEvent.preventDefault();
 
-    var myContentPanes = document.querySelectorAll(".tab-pane");
+    let myContentPanes = document.querySelectorAll(".tab-pane");
 
-    for (i = 0; i < myContentPanes.length; i++) {
+    for (let i = 0; i < myContentPanes.length; i++) {
       myContentPanes[i].classList.remove("active");
     }
 
-    var anchorReference = tabClickEvent.target;
-    var activePaneId = anchorReference.getAttribute("href");
-    var activePane = document.querySelector(activePaneId);
+    let anchorReference = tabClickEvent.target;
+    let activePaneId = anchorReference.getAttribute("href");
+    let activePane = document.querySelector(activePaneId);
 
     activePane.classList.add("active");
   }
@@ -64,11 +75,13 @@ function renderTeams() {
   for (let i = 0; i < 5; i++) {
     let tab = document.querySelector(`#tab-${i}`);
     let strHTMl = "";
-    gLeagues[i ].forEach((team) => {
+    gLeagues[i].forEach((team: Team, idx: number) => {
       strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>
+        <a href="http://${team.strWebsite}" title="Link to Website" target="_blank">
         <img src=${team.strTeamBadge} />
+        </a>
         </div>
         `;
     });

@@ -1,28 +1,12 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  padding: 0;
-}
 
-@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
-  font-size: $font-size * 1px;
-  // font-size: $font-size * 0.1rem;
-  // example using rem values and 62.5% font-size so 1rem = 10px
+// setup
+@import './setup/basic';
+@import './setup/mixins';
 
-  @if $line-height==normal {
-    line-height: normal;
-  } @else {
-    line-height: $line-height / $font-size;
-  }
+// components
+@import './components/tabs';
 
-  @if $letter-spacing==normal {
-    letter-spacing: normal;
-  } @else {
-    letter-spacing: #{$letter-spacing / $font-size}em;
-  }
-}
+
 
 .title {
   @include font-size(48, 18, 1.2);
@@ -30,88 +14,4 @@ body {
   font-weight: bold;
 }
 
-.container--tabs {
-  margin: 2rem;
 
-  .nav-tabs {
-    @include font-size(26, 1, 1);
-    display: flex;
-    justify-content: center;
-    gap: 2px;
-    align-items: center;
-    width: 100%;
-    margin: 0;
-    list-style-type: none;
-    border-bottom: 1px solid #ddd;
-
-    > li {
-      float: left;
-      margin-bottom: -1px;
-
-      > a {
-        font-size: 1.5rem;
-        color: rgb(50, 49, 49);
-        text-decoration: none;
-        float: left;
-        margin-right: 2px;
-        line-height: 1.42857143;
-        padding: 10px;
-        border: 1px solid transparent;
-        border-radius: 4px 4px 0 0;
-
-        &:hover {
-          border-color: #eee #eee #ddd;
-        }
-      }
-
-      &.active {
-        > a,
-        > a:hover,
-        > a:focus {
-          color: rgb(217, 12, 12);
-          cursor: default;
-          background-color: #fff;
-          border: 1px solid #ddd;
-          border-bottom-color: transparent;
-        }
-      }
-    }
-  }
-
-  .tab-content {
-    float: left;
-    width: 100%;
-
-    > .tab-pane {
-      display: none;
-
-      .team-card {
-        width: fit-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 150px;
-        }
-        h1 {
-          @include font-size(28, 2, 1.5);
-          text-align: center;
-        }
-      }
-
-      &.active {
-        display: grid;
-        place-items: center;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 2.5% 3.5%;
-        background-color: #efefef;
-      }
-    }
-
-    > .active {
-      display: block;
-    }
-  }
-}

@@ -1,6 +1,7 @@
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -8,16 +9,9 @@ body {
   padding: 0;
 }
 
-.title {
-  font-size: 48px;
-  line-height: 0.375;
-  letter-spacing: 0.025em;
-  text-align: center;
-  font-weight: bold;
-}
-
 .container--tabs {
   margin: 2rem;
+  position: relative;
 }
 
 .container--tabs .nav-tabs {
@@ -55,20 +49,28 @@ body {
   padding: 10px;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
 }
 
 .container--tabs .nav-tabs > li > a:hover {
   border-color: #eee #eee #ddd;
+  background-color: #efefef;
+  -webkit-transition: top 0.25s;
+  transition: top 0.25s;
 }
 
 .container--tabs .nav-tabs > li.active > a,
 .container--tabs .nav-tabs > li.active > a:hover,
 .container--tabs .nav-tabs > li.active > a:focus {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
   color: #d90c0c;
   cursor: default;
   background-color: #fff;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
+  border-bottom: 2px solid black;
 }
 
 .container--tabs .tab-content {
@@ -78,6 +80,10 @@ body {
 
 .container--tabs .tab-content > .tab-pane {
   display: none;
+  -webkit-transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease, -webkit-transform 0.8s ease;
 }
 
 .container--tabs .tab-content > .tab-pane .team-card {
@@ -99,11 +105,23 @@ body {
           align-items: center;
 }
 
-.container--tabs .tab-content > .tab-pane .team-card img {
+.container--tabs .tab-content > .tab-pane .team-card a {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.container--tabs .tab-content > .tab-pane .team-card a img {
   width: 150px;
 }
 
-.container--tabs .tab-content > .tab-pane .team-card h1 {
+.container--tabs .tab-content > .tab-pane .team-card a img:hover {
+  opacity: 0.5;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.container--tabs .tab-content > .tab-pane .team-card a h1 {
   font-size: 28px;
   line-height: 0.07143;
   letter-spacing: 0.05357em;
@@ -123,5 +141,13 @@ body {
 
 .container--tabs .tab-content > .active {
   display: block;
+}
+
+.title {
+  font-size: 48px;
+  line-height: 0.375;
+  letter-spacing: 0.025em;
+  text-align: center;
+  font-weight: bold;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,106 @@
+.container--tabs {
+  margin: 2rem;
+  position: relative;
+
+  .nav-tabs {
+    @include font-size(26, 1, 1);
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    list-style-type: none;
+    border-bottom: 1px solid #ddd;
+
+    > li {
+      float: left;
+      margin-bottom: -1px;
+
+      > a {
+        font-size: 1.5rem;
+        color: rgb(50, 49, 49);
+        text-decoration: none;
+        float: left;
+        margin-right: 2px;
+        line-height: 1.42857143;
+        padding: 10px;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+        transition: all 0.25s;
+
+        &:hover {
+          border-color: #eee #eee #ddd;
+          background-color: #efefef;
+          transition: top 0.25s;
+        }
+      }
+
+      &.active {
+        > a,
+        > a:hover,
+        > a:focus {
+          transition: all 0.3s;
+          color: rgb(217, 12, 12);
+          cursor: default;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          border-bottom-color: transparent;
+          border-bottom: 2px solid black;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    float: left;
+    width: 100%;
+    
+    
+    > .tab-pane {
+      display: none;
+      transition: 
+      opacity 0.8s ease,
+      transform 0.8s ease;
+
+      .team-card {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a {
+            display: grid;
+            place-items: center;
+            img {
+                width: 150px;
+                &:hover {
+                    opacity: 0.5;
+                    transition: 0.3s
+                }
+            }
+            h1 {
+                @include font-size(28, 2, 1.5);
+                text-align: center;
+            }
+        }
+    }
+
+      &.active {
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 2.5% 3.5%;
+        background-color: #efefef;
+
+      
+        
+      }
+    }
+
+    > .active {
+     display: block;
+    }
+  }
+}
