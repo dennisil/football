@@ -11,7 +11,6 @@
     width: 100%;
     margin: 0;
     list-style-type: none;
-    border-bottom: 1px solid #ddd;
 
     > li {
       float: left;
@@ -41,7 +40,7 @@
         > a:hover,
         > a:focus {
           transition: all 0.3s;
-          color: rgb(217, 12, 12);
+          color: $light-red;
           cursor: default;
           background-color: #fff;
           border: 1px solid #ddd;
@@ -55,52 +54,55 @@
   .tab-content {
     float: left;
     width: 100%;
-    
-    
+    transition: all 1s linear;
+
+
     > .tab-pane {
       display: none;
-      transition: 
-      opacity 0.8s ease,
-      transform 0.8s ease;
 
+      
       .team-card {
         width: fit-content;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
         a {
-            display: grid;
-            place-items: center;
-            img {
-                width: 150px;
-                &:hover {
-                    opacity: 0.5;
-                    transition: 0.3s
-                }
+          display: grid;
+          place-items: center;
+          img {
+            width: 150px;
+            &:hover {
+              opacity: 0.5;
+              transition: 0.3s;
             }
-            h1 {
-                @include font-size(28, 2, 1.5);
-                text-align: center;
-            }
+          }
         }
-    }
+        h1 {
+          @include font-size(32, 2, 1.5);
+          text-align: center;
+        }
+      }
 
       &.active {
         display: grid;
         place-items: center;
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
+        row-gap: 3rem;
         padding: 2.5% 3.5%;
         background-color: #efefef;
-
-      
+        border: 2px solid #222;
+        border-radius: 20px;
+        
         
       }
     }
 
     > .active {
-     display: block;
+      display: block;
+     
     }
   }
 }

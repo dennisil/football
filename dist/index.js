@@ -8,36 +8,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+// const array of league names
+const gLeagueNames = [
+    "English Premier League",
+    "German Bundesliga",
+    "Italian Serie A",
+    "Spanish La Liga",
+    "French Ligue 1",
+];
 let gLeagues = [];
+// init function called on page load
 function onInit() {
     return __awaiter(this, void 0, void 0, function* () {
         yield setTeams();
         renderTeams();
     });
 }
-function getTeams(league = 'English Premier League') {
+// fetch teams from API
+function getTeams(league = "English Premier League") {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { teams } = yield fetch(`https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${league}`).then((res) => res.json());
             return teams;
         }
         catch (err) {
-            throw (err);
+            throw err;
         }
     });
 }
+// Append all leagues to global array
 function setTeams() {
     return __awaiter(this, void 0, void 0, function* () {
-        let germanLeague = yield getTeams("German Bundesliga");
-        let frenchLeague = yield getTeams("French Ligue 1");
-        let italianLeague = yield getTeams("Italian Serie A");
-        let englishLeague = yield getTeams("English Premier League");
-        let spanishLeague = yield getTeams("Spanish La Liga");
-        gLeagues.push(englishLeague, germanLeague, italianLeague, spanishLeague, frenchLeague);
+        for (const name of gLeagueNames) {
+            let league = yield getTeams(name);
+            gLeagues.push(league);
+        }
     });
 }
 window.addEventListener("load", function () {
     let myTabs = document.querySelectorAll("ul.nav-tabs > li");
+    // Clicking tabs
     function myTabClicks(tabClickEvent) {
         for (let i = 0; i < myTabs.length; i++) {
             myTabs[i].classList.remove("active");
@@ -46,27 +56,30 @@ window.addEventListener("load", function () {
         clickedTab.classList.add("active");
         tabClickEvent.preventDefault();
         let myContentPanes = document.querySelectorAll(".tab-pane");
+        // remove active calss from non clicked tabs
         for (let i = 0; i < myContentPanes.length; i++) {
             myContentPanes[i].classList.remove("active");
         }
         let anchorReference = tabClickEvent.target;
         let activePaneId = anchorReference.getAttribute("href");
         let activePane = document.querySelector(activePaneId);
+        // add active class to clicked tab
         activePane.classList.add("active");
     }
     for (let i = 0; i < myTabs.length; i++) {
         myTabs[i].addEventListener("click", myTabClicks);
     }
 });
+// loop through and render teams logo etc...
 function renderTeams() {
     for (let i = 0; i < 5; i++) {
         let tab = document.querySelector(`#tab-${i}`);
         let strHTMl = "";
-        gLeagues[i].forEach((team, idx) => {
+        gLeagues[i].forEach((team) => {
             strHTMl += `
         <div class="team-card">
         <h1>${team.strTeam} </h1>
-        <a href="http://${team.strWebsite}" title="Link to Website" target="_blank">
+        <a href="http://${team.strWebsite}" title="Go to ${team.strTeam}'s Website" target="_blank">
         <img src=${team.strTeamBadge} />
         </a>
         </div>

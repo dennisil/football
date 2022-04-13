@@ -7,6 +7,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: whitesmoke;
 }
 
 .container--tabs {
@@ -31,7 +32,6 @@ body {
   width: 100%;
   margin: 0;
   list-style-type: none;
-  border-bottom: 1px solid #ddd;
 }
 
 .container--tabs .nav-tabs > li {
@@ -76,14 +76,12 @@ body {
 .container--tabs .tab-content {
   float: left;
   width: 100%;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
 }
 
 .container--tabs .tab-content > .tab-pane {
   display: none;
-  -webkit-transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
-  transition: opacity 0.8s ease, -webkit-transform 0.8s ease;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  transition: opacity 0.8s ease, transform 0.8s ease, -webkit-transform 0.8s ease;
 }
 
 .container--tabs .tab-content > .tab-pane .team-card {
@@ -121,10 +119,10 @@ body {
   transition: 0.3s;
 }
 
-.container--tabs .tab-content > .tab-pane .team-card a h1 {
-  font-size: 28px;
-  line-height: 0.07143;
-  letter-spacing: 0.05357em;
+.container--tabs .tab-content > .tab-pane .team-card h1 {
+  font-size: 32px;
+  line-height: 0.0625;
+  letter-spacing: 0.04688em;
   text-align: center;
 }
 
@@ -135,8 +133,11 @@ body {
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  row-gap: 3rem;
   padding: 2.5% 3.5%;
   background-color: #efefef;
+  border: 2px solid #222;
+  border-radius: 20px;
 }
 
 .container--tabs .tab-content > .active {
