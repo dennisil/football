@@ -17,6 +17,7 @@ let gLeagues: Team[][] = [];
 
 // init function called on page load
 async function onInit() {
+  addEventListenerForTabs();
   await setTeams();
   renderTeams();
 }
@@ -43,7 +44,7 @@ async function setTeams(): Promise<void> {
   }
 }
 
-window.addEventListener("load", function () {
+function addEventListenerForTabs() {
   let myTabs = document.querySelectorAll("ul.nav-tabs > li");
   // Clicking tabs
   function myTabClicks(tabClickEvent: any) {
@@ -58,22 +59,21 @@ window.addEventListener("load", function () {
     tabClickEvent.preventDefault();
 
     let myContentPanes = document.querySelectorAll(".tab-pane");
-    // remove active calss from non clicked tabs
+    // remove active class from non clicked tabs
     for (let i = 0; i < myContentPanes.length; i++) {
       myContentPanes[i].classList.remove("active");
     }
-
+    
     let anchorReference = tabClickEvent.target;
     let activePaneId = anchorReference.getAttribute("href");
     let activePane = document.querySelector(activePaneId);
     // add active class to clicked tab
     activePane.classList.add("active");
   }
-
   for (let i = 0; i < myTabs.length; i++) {
     myTabs[i].addEventListener("click", myTabClicks);
   }
-});
+}
 
 // loop through and render teams logo etc...
 function renderTeams() {

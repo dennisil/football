@@ -20,6 +20,7 @@ let gLeagues = [];
 // init function called on page load
 function onInit() {
     return __awaiter(this, void 0, void 0, function* () {
+        addEventListenerForTabs();
         yield setTeams();
         renderTeams();
     });
@@ -45,7 +46,7 @@ function setTeams() {
         }
     });
 }
-window.addEventListener("load", function () {
+function addEventListenerForTabs() {
     let myTabs = document.querySelectorAll("ul.nav-tabs > li");
     // Clicking tabs
     function myTabClicks(tabClickEvent) {
@@ -56,7 +57,7 @@ window.addEventListener("load", function () {
         clickedTab.classList.add("active");
         tabClickEvent.preventDefault();
         let myContentPanes = document.querySelectorAll(".tab-pane");
-        // remove active calss from non clicked tabs
+        // remove active class from non clicked tabs
         for (let i = 0; i < myContentPanes.length; i++) {
             myContentPanes[i].classList.remove("active");
         }
@@ -69,7 +70,7 @@ window.addEventListener("load", function () {
     for (let i = 0; i < myTabs.length; i++) {
         myTabs[i].addEventListener("click", myTabClicks);
     }
-});
+}
 // loop through and render teams logo etc...
 function renderTeams() {
     for (let i = 0; i < 5; i++) {
