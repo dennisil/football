@@ -40,18 +40,8 @@ function getTeams(league = "English Premier League") {
 // Append all leagues to global array
 function setTeams() {
     return __awaiter(this, void 0, void 0, function* () {
-        // for (const name of gLeagueNames) {
-        //   let league = await getTeams(name);
-        //   gLeagues.push(league);
-        // }
         try {
-            yield Promise.all([
-                getTeams(gLeagueNames[0]),
-                getTeams(gLeagueNames[1]),
-                getTeams(gLeagueNames[2]),
-                getTeams(gLeagueNames[3]),
-                getTeams(gLeagueNames[4]),
-            ]).then((leagues) => (gLeagues = leagues));
+            yield Promise.all(gLeagueNames.map((name) => getTeams(name))).then((leagues) => (gLeagues = leagues));
         }
         catch (err) {
             console.log(err);

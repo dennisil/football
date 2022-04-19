@@ -38,18 +38,10 @@ async function getTeams(
 
 // Append all leagues to global array
 async function setTeams(): Promise<void> {
-  // for (const name of gLeagueNames) {
-  //   let league = await getTeams(name);
-  //   gLeagues.push(league);
-  // }
   try {
-    await Promise.all([
-      getTeams(gLeagueNames[0]),
-      getTeams(gLeagueNames[1]),
-      getTeams(gLeagueNames[2]),
-      getTeams(gLeagueNames[3]),
-      getTeams(gLeagueNames[4]),
-    ]).then((leagues) => (gLeagues = leagues));
+    await Promise.all(gLeagueNames.map((name) => getTeams(name))).then(
+      (leagues) => (gLeagues = leagues)
+    );
   } catch (err) {
     console.log(err);
   }
