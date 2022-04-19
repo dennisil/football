@@ -38,9 +38,20 @@ async function getTeams(
 
 // Append all leagues to global array
 async function setTeams(): Promise<void> {
-  for (const name of gLeagueNames) {
-    let league = await getTeams(name);
-    gLeagues.push(league);
+  // for (const name of gLeagueNames) {
+  //   let league = await getTeams(name);
+  //   gLeagues.push(league);
+  // }
+  try {
+    await Promise.all([
+      getTeams(gLeagueNames[0]),
+      getTeams(gLeagueNames[1]),
+      getTeams(gLeagueNames[2]),
+      getTeams(gLeagueNames[3]),
+      getTeams(gLeagueNames[4]),
+    ]).then((leagues) => (gLeagues = leagues));
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -63,7 +74,7 @@ function addEventListenerForTabs() {
     for (let i = 0; i < myContentPanes.length; i++) {
       myContentPanes[i].classList.remove("active");
     }
-    
+
     let anchorReference = tabClickEvent.target;
     let activePaneId = anchorReference.getAttribute("href");
     let activePane = document.querySelector(activePaneId);
